@@ -51,5 +51,9 @@ describe FaqModule::CreateService do
       expect(@hashtags.split(/[\s,]+/).last).to match(Hashtag.last.name)
     end
 
+<<<<<<< HEAD
   end  
+=======
+  end
+>>>>>>> test_services
 end
