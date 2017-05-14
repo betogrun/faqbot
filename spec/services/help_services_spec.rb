@@ -6,7 +6,7 @@ describe HelpService do
     it "Response have the main commands" do
       response = HelpService.call()
       expect(response).to match('help')
-      expect(response).to match('Add to Faq')
+      expect(response).to match('Add to FAQ')
       expect(response).to match('Remove ID')
       expect(response).to match('What do you know about X')
       expect(response).to match('Search for hashtag X')

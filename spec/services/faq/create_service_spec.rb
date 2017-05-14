@@ -35,7 +35,9 @@ describe FaqModule::CreateService do
         "answer.original" => @answer,
         "hashtags.original" => @hashtags})
 
-      @createService.call()
+      response = @createService.call()
+      puts "Faq: #{Faq.last}"
+      puts "Response: #{response}"
       expect(Faq.last.question).to match(@question)
       expect(Faq.last.answer).to match(@answer)
     end
@@ -51,9 +53,6 @@ describe FaqModule::CreateService do
       expect(@hashtags.split(/[\s,]+/).last).to match(Hashtag.last.name)
     end
 
-<<<<<<< HEAD
-  end  
-=======
+
   end
->>>>>>> test_services
 end

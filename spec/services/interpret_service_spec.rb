@@ -98,7 +98,7 @@ describe InterpretService do
 
     it "With invalid ID, receive error message" do
       response = InterpretService.call('remove', {"id" => rand(1..9999)})
-      expect(response).to match("invalid question, check id")
+      expect(response).to match("invalid question, check Id")
     end
   end
 end
