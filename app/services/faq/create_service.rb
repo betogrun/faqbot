@@ -3,7 +3,7 @@ module FaqModule
     def initialize(params)
       @company = Company.last
       @question = params["question.original"]
-      @anwser = params["answer.original"]
+      @answer = params["answer.original"]
       @hashtags = params['hashtags.original']
     end
 
@@ -11,16 +11,15 @@ module FaqModule
       return "Hashtag is mandatory" if @hashtags == nil || @hashtags == ""
       begin
         Faq.transaction do
-          @faq = Faq.create(question: @question, answer: @answer, company: @company)
+          faq = Faq.create!(question: @question, answer: @answer, company: @company)
           @hashtags.split(/[\s,]+/).each do |hashtag|
-            @faq.hashtags << Hashtag.create(name: hashtag)
+            faq.hashtags << Hashtag.create(name: hashtag)
           end
         end
-        "Created successfully: #{@faq.question}"
-      rescue
-        "Errors during Faq creation: #{@faq}"
+        "Created successfully"
+      rescue => e
+        "Errors during Faq creation: #{e}"
       end
-
     end
   end
 end

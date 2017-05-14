@@ -36,8 +36,6 @@ describe FaqModule::CreateService do
         "hashtags.original" => @hashtags})
 
       response = @createService.call()
-      puts "Faq: #{Faq.last}"
-      puts "Response: #{response}"
       expect(Faq.last.question).to match(@question)
       expect(Faq.last.answer).to match(@answer)
     end
