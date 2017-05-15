@@ -1,5 +1,7 @@
 class HelpService
-  def self.call
+  def initialize(params);  end;
+
+  def call
     response = "*What can I do :raised_hands:* \n\n"
     response += "*help*\n"
     response += ">I know the following commands:\n\n"
