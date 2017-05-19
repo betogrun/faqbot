@@ -21,12 +21,14 @@ configure :development do
 end
 
 configure :production do
+  db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///postgres/faqbot_production')
+
    set :database, {
-     adapter: 'postgresql',
+     adapter: db.scheme == 'postgres' ? 'postgresql' : db.scheme,
      encoding: 'utf8',
-     database: 'faqbot_production',
-     pool: 5,
-     username: 'postgres',
-     host: 'postgres'
+     database: db.path[1..-1],
+     username: db.user,
+     password: db.password,
+     host: db.host
    }
 end
