@@ -12,6 +12,10 @@ class App < Sinatra::Base
     'Hello world!'
   end
 
+  get '/sinatra' do
+    'Hello world Sinatra!'
+  end
+
   post '/webhook' do
     result = JSON.parse(request.body.read)["result"]
     if result["contexts"].present?
