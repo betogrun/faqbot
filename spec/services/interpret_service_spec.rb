@@ -5,6 +5,13 @@ describe InterpretService do
     @company = create(:company)
   end
 
+  describe "#help" do
+    it "calls help service" do
+      response = InterpretService.call('help', {})
+      expect(response).to match('help')
+    end
+  end
+
   describe '#list' do
     it "With zero faqs, return don't find message" do
       response = InterpretService.call('list', {})

@@ -11,6 +11,7 @@ class InterpretService
 
   def self.class_name(action)
     class_name = "#{action.camelize}Service"
-    "FaqModule::" + class_name if FaqModule.constants.include?(class_name.to_sym)
+    class_name = "FaqModule::" + class_name if FaqModule.constants.include?(class_name.to_sym)
+    class_name
   end
 end
