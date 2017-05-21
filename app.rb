@@ -1,7 +1,7 @@
 require 'json'
 require 'sinatra'
 require 'sinatra/activerecord'
-
+require 'byebug'
 require './config/database'
 
 Dir["./app/models/*.rb"].each {|file| require file }
@@ -26,6 +26,7 @@ class App < Sinatra::Base
 
     content_type :json
     {
+      "unfurl_links": "true",
       "speech": response,
       "displayText": response,
       "source": "FAQBot"

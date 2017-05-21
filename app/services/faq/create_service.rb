@@ -2,9 +2,9 @@ module FaqModule
   class CreateService
     def initialize(params)
       @company = Company.last
-      @question = params["question.original"]
-      @answer = params["answer.original"]
-      @hashtags = params['hashtags.original']
+      @question = params["question"]
+      @answer = params["answer"]
+      @hashtags = params['hashtag']
     end
 
     def call

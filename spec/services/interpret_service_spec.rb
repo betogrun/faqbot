@@ -74,23 +74,23 @@ describe InterpretService do
     end
 
     it "Without hashtag params, receive a error" do
-      response = InterpretService.call('create', {"question.original" => @question, "answer.original" => @answer})
+      response = InterpretService.call('create', {"question" => @question, "answer" => @answer})
       expect(response).to match("Hashtag is mandatory")
     end
 
     it "With valid params, receive success message" do
-      response = InterpretService.call('create', {"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
+      response = InterpretService.call('create', {"question" => @question, "answer" => @answer, "hashtag" => @hashtags})
       expect(response).to match("Created successfully")
     end
 
     it "With valid params, find question and anwser in database" do
-      InterpretService.call('create', {"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
+      InterpretService.call('create', {"question" => @question, "answer" => @answer, "hashtag" => @hashtags})
       expect(Faq.last.question).to match(@question)
       expect(Faq.last.answer).to match(@answer)
     end
 
     it "With valid params, hashtags are created" do
-      InterpretService.call('create', {"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
+      InterpretService.call('create', {"question" => @question, "answer" => @answer, "hashtag" => @hashtags})
       expect(@hashtags.split(/[\s,]+/).first).to match(Hashtag.first.name)
       expect(@hashtags.split(/[\s,]+/).last).to match(Hashtag.last.name)
     end

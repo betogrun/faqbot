@@ -12,8 +12,8 @@ describe FaqModule::CreateService do
   describe "#call" do
     it "without hashtag params, will receive a error" do
       @createService = FaqModule::CreateService.new({
-        "question.original" => @question,
-        "answer.original" => @anser
+        "question" => @question,
+        "answer" => @anser
         })
       response = @createService.call()
       expect(response).to match("Hashtag is mandatory")
@@ -21,9 +21,9 @@ describe FaqModule::CreateService do
 
     it "with valid params, receive sucesse message" do
       @createService = FaqModule::CreateService.new({
-        "question.original" => @question,
-        "answer.original" => @answer,
-        "hashtags.original" => @hashtags
+        "question" => @question,
+        "answer" => @answer,
+        "hashtag" => @hashtags
         })
       response = @createService.call()
       expect(response).to match("Created successfully")
@@ -31,20 +31,20 @@ describe FaqModule::CreateService do
 
     it "With valid params, find question and anwser in database" do
       @createService = FaqModule::CreateService.new({
-        "question.original" => @question,
-        "answer.original" => @answer,
-        "hashtags.original" => @hashtags})
+        "question" => @question,
+        "answer" => @answer,
+        "hashtag" => @hashtags})
 
-      response = @createService.call()
+      @createService.call()
       expect(Faq.last.question).to match(@question)
       expect(Faq.last.answer).to match(@answer)
     end
 
     it "With valid params, hashtags are created" do
       @createService = FaqModule::CreateService.new({
-        "question.original" => @question,
-        "answer.original" => @answer,
-        "hashtags.original" => @hashtags})
+        "question" => @question,
+        "answer" => @answer,
+        "hashtag" => @hashtags})
 
       @createService.call()
       expect(@hashtags.split(/[\s,]+/).first).to match(Hashtag.first.name)
