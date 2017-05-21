@@ -1,7 +1,7 @@
 require 'json'
 require 'sinatra'
 require 'sinatra/activerecord'
-require 'byebug'
+require 'byebug' unless ENV['RACK_ENV'] == 'production'
 require './config/database'
 
 Dir["./app/models/*.rb"].each {|file| require file }
