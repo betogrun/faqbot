@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507211919) do
+ActiveRecord::Schema.define(version: 20170521215441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmark_hashtags", force: :cascade do |t|
+    t.integer "bookmark_id"
+    t.integer "hashtag_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.string "url"
+    t.integer "company_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
